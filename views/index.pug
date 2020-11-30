@@ -14,7 +14,7 @@ block content
         p.display-3.text-center Destination Fever
         div.m-auto.mt-5(id="map")
     .row.border.m-3
-      .col-4.text-center.p-3
+      .col.text-center.p-3
         p.text-center.font-weight-bold Choose parameters to filter the map
         button.btn.btn-primary.m-1#weatherButton Weather
         button.btn.btn-primary.m-1#populationButton Population
@@ -22,13 +22,19 @@ block content
         button.btn.btn-primary.m-1#politicsButton Politics
         button.btn.btn-primary.m-1#crimeButton Crime
         button.btn.btn-primary.m-1#housingButton Housing
-      .col-8.text-center#filterArea.p-3
+      .col.text-center#filterArea.p-3
     .row.border.m-3
       .col-4.text-center.p-3
         div#expressionArea
           button.btn.btn-info.w-100.m-1#createExpression Create an Expression
         button.btn.btn-secondary.w-100.m-1(type="button" data-toggle="modal" data-target="#animationOptionsModal") Animation Options
         button.btn.btn-warning.w-100.m-1#clearColors Clear Colors
+        
+      .col-4.text-center.p-3
+        h3 Selected Counties
+        div.border.text-center#selectedCounties
+      .col-4.text-center.p-3
+        h3 Descriptions
         div.dropdown
           button.btn.btn-primary.w-100.m-1.dropdown-toggle(type="button" data-toggle="dropdown") Add Descriptions
             span.caret
@@ -45,11 +51,6 @@ block content
             a.dropdown-item.desc() Governor
             a.dropdown-item.desc() House Representatives
             a.dropdown-item.desc() Senators
-      .col-4.text-center.p-3
-        h3 Selected Counties
-        div.border.text-center#selectedCounties
-      .col-4.text-center.p-3
-        h3 Descriptions
         div.border.text-center#selectedDescriptions
         
 
@@ -77,6 +78,4 @@ block content
   script(src="../javascripts/mapdata.js")
   script(src="../javascripts/countymap.js")
   script(src="../javascripts/select.js")
-  script(src="../javascripts/loadreps.js")
-  script(src="../javascripts/colormap.js")
   script(src="../javascripts/filter.js")

@@ -1,3 +1,4 @@
+var colorObj = {};
 var simplemaps_countymap_mapdata={
   main_settings: {
     //General settings
@@ -7,7 +8,7 @@ var simplemaps_countymap_mapdata={
     popups: "detect",
     
 		//State defaults
-		state_description: "State description",
+		state_description: "Choose a description",
     state_color: "#88A4BC",
     state_hover_color: "#3B729F",
     state_url: "",

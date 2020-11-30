@@ -10,11 +10,16 @@ let covidButton = document.querySelector('#covidButton');
 let politicsButton = document.querySelector('#politicsButton');
 let crimeButton = document.querySelector('#crimeButton');
 let housingButton = document.querySelector('#housingButton');
+simplemaps_select.map=simplemaps_countymap
+
+Object.keys(simplemaps_countymap_mapinfo.names).forEach((v)=> {
+    colorObj[v]="#88A4BC";
+})
 
 //SIMPLEMAP HOOKS
 
 simplemaps_countymap.hooks.click_state = function(id) {
-    if (document.querySelector('#selectedCounty'+id) == null) {
+    if (document.querySelector('#selectedCounty'+id) == null && !simplemaps_select.selected.includes(id)) {
         let countyElement = document.createElement('div');
         countyElement.id = "selectedCounty"+id;
         countyElement.innerHTML = `
@@ -29,16 +34,11 @@ simplemaps_countymap.hooks.click_state = function(id) {
                 </p>
             `;
         })
-
-        simplemaps_countymap_mapdata.state_specific[id].color = "#bbeebb";
-        simplemaps_countymap.refresh_state(id);
-
-
         document.querySelector('#selectedCounties').appendChild(countyElement);
     } else {
         document.querySelector('#selectedCounty'+id).remove()
     }
-    document.querySelector('#selectedCounties').appendChild(countyElement);
+    
 }
 
 
@@ -61,7 +61,7 @@ const addDescription = function(tagName, keys) {
                     object.splice(index, 1);
                 }
             })
-            this.remove()
+            ev.currentTarget.remove()
         }
         document.querySelector('#selectedDescriptions').appendChild(descriptionButton);
     }
@@ -69,7 +69,8 @@ const addDescription = function(tagName, keys) {
 
 const deleteCounty = function(id) {
     document.querySelector('#selectedCounty'+id).remove();
-    simplemaps_select.deselect(id);
+    let strId = id.toString();
+    simplemaps_select.deselect(strId);
 }
 
 document.querySelector('#colorChooser').addEventListener("mouseleave", (ev) => {
