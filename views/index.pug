@@ -33,24 +33,24 @@ block content
           button.btn.btn-primary.w-100.m-1.dropdown-toggle(type="button" data-toggle="dropdown") Add Descriptions
             span.caret
           div.dropdown-menu
-            a.dropdown-item.desc(href="#") State Population
-            a.dropdown-item.desc(href="#") State Population Density
-            a.dropdown-item.desc(href="#") County Population
-            a.dropdown-item.desc(href="#") County Population Density
-            a.dropdown-item.desc(href="#") COVID-19 Cases By County
-            a.dropdown-item.desc(href="#") COVID-19 Deaths By County
-            a.dropdown-item.desc(href="#") COVID-19 Something
-            a.dropdown-item.desc(href="#") COVID-19 Something
-            a.dropdown-item.desc(href="#") COVID-19 New Cases
-            a.dropdown-item.desc(href="#") Governor
-            a.dropdown-item.desc(href="#") House Representatives
-            a.dropdown-item.desc(href="#") Senators
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['population', 'statePopulation']);") State Population
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['population', 'statePopulationDensity']);") State Population Density
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['population', 'countyPopulation']);") County Population
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['population', 'countyPopulationDensity']);") County Population Density
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['covid', 'cases']);") COVID-19 Cases By County
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['covid', 'deaths']);") COVID-19 Deaths By County
+            a.dropdown-item.desc() COVID-19 Something
+            a.dropdown-item.desc() COVID-19 Something
+            a.dropdown-item.desc(onclick="addDescription(this.innerHTML, ['covid', 'newCases']);") COVID-19 New Cases
+            a.dropdown-item.desc() Governor
+            a.dropdown-item.desc() House Representatives
+            a.dropdown-item.desc() Senators
       .col-4.text-center.p-3
         h3 Selected Counties
-        .border
+        div.border.text-center#selectedCounties
       .col-4.text-center.p-3
         h3 Descriptions
-        .border
+        div.border.text-center#selectedDescriptions
         
 
   div.modal.fade#animationOptionsModal(tabindex="-1" role="dialog" aria-labelledby="animationModalLabel" aria-hidden="true")

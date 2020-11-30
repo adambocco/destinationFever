@@ -1,13 +1,76 @@
 $("#slider").roundSlider();
 let animationAngle = $("#slider").data("roundSlider");
 let animationColor = {r:0,g:0,b:0};
-
+let numerators = [];
+let denominators = [];
+let descriptions = [];
 let weatherButton = document.querySelector('#weatherButton');
 let populationButton = document.querySelector('#populationButton');
 let covidButton = document.querySelector('#covidButton');
 let politicsButton = document.querySelector('#politicsButton');
 let crimeButton = document.querySelector('#crimeButton');
 let housingButton = document.querySelector('#housingButton');
+
+//SIMPLEMAP HOOKS
+
+simplemaps_countymap.hooks.click_state = function(id) {
+    if (document.querySelector('#selectedCounty'+id) == null) {
+        let countyElement = document.createElement('div');
+        countyElement.id = "selectedCounty"+id;
+        countyElement.innerHTML = `
+            <h3>${countyData[id].name}</h3>
+            <button class="btn btn-danger w-100 btn-small" type="button" onclick="deleteCounty(${id});">Delete</button>
+        `;
+        descriptions.forEach((v)=> {
+            countyElement.innerHTML += `
+                <p>
+                    <span class="font-weight-bold">${v.tagName}</span>
+                    <span>${countyData[id][v.keys[0]][v.keys[1]]}</span>
+                </p>
+            `;
+        })
+
+        simplemaps_countymap_mapdata.state_specific[id].color = "#bbeebb";
+        simplemaps_countymap.refresh_state(id);
+
+
+        document.querySelector('#selectedCounties').appendChild(countyElement);
+    } else {
+        document.querySelector('#selectedCounty'+id).remove()
+    }
+    document.querySelector('#selectedCounties').appendChild(countyElement);
+}
+
+
+const addDescription = function(tagName, keys) {
+    let exists = false;
+    descriptions.forEach((v)=> {
+        if (v.tagName == tagName) {
+            exists = true;
+        }
+    })
+    if (!exists) {
+        descriptions.push({'tagName':tagName, 'keys': keys});
+        let descriptionButton = document.createElement('button');
+        descriptionButton.setAttribute('type', 'button');
+        descriptionButton.className = "btn btn-success m-1"
+        descriptionButton.innerHTML = tagName+ " &times;";
+        descriptionButton.onclick = (ev)=> {
+            descriptions.forEach((v, index, object)=> {
+                if (v.tagName == tagName) {
+                    object.splice(index, 1);
+                }
+            })
+            this.remove()
+        }
+        document.querySelector('#selectedDescriptions').appendChild(descriptionButton);
+    }
+}
+
+const deleteCounty = function(id) {
+    document.querySelector('#selectedCounty'+id).remove();
+    simplemaps_select.deselect(id);
+}
 
 document.querySelector('#colorChooser').addEventListener("mouseleave", (ev) => {
     animationColor = hexToRgb(ev.currentTarget.value);
@@ -27,8 +90,6 @@ document.querySelector('#clearColors').addEventListener("click", () => {
     })
     simplemaps_countymap.load();
 })
-let numerators = [];
-let denominators = [];
 
 const addNumerator = function (statName, keys) {
     numerators.push({ 'tagName': statName, 'keys': keys });

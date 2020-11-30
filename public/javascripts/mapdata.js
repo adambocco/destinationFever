@@ -10,11 +10,11 @@ var simplemaps_countymap_mapdata={
 		state_description: "State description",
     state_color: "#88A4BC",
     state_hover_color: "#3B729F",
-    state_url: "http://simplemaps.com",
+    state_url: "",
     border_size: 0.5,
     border_color: "#44C",
     all_states_inactive: "no",
-    all_states_zoomable: "yes",
+    all_states_zoomable: "no",
     
 		//Location defaults
 		location_description: "Location description",
