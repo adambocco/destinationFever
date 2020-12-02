@@ -2,7 +2,7 @@ var colorObj = {};
 var simplemaps_countymap_mapdata={
   main_settings: {
     //General settings
-		width: "1200", //or 'responsive'
+		width: "responsive", //or 'responsive'
     background_color: "#FFFFFF",
     background_transparent: "no",
     popups: "detect",
