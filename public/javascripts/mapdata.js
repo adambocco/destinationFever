@@ -4,7 +4,7 @@ var simplemaps_countymap_mapdata={
     //General settings
 		width: "responsive", //or 'responsive'
     background_color: "#FFFFFF",
-    background_transparent: "no",
+    background_transparent: "yes",
     popups: "detect",
     
 		//State defaults
